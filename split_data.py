@@ -23,9 +23,9 @@ def create_dataset(file_path, label, chunk_size=100):
 
 # 1. 读取你生成的三个 cleaned 文件
 # 假设 0: Richard III (早), 1: Macbeth (中), 2: Tempest (晚)
-df_early = create_dataset("Richard_III_cleaned.txt", 0)
-df_middle = create_dataset("Macbeth_cleaned.txt", 1)
-df_late = create_dataset("Tempest_cleaned.txt", 2)
+df_early = create_dataset("./rawdata/Richard_III_cleaned.txt", 0)
+df_middle = create_dataset("./rawdata/Macbeth_cleaned.txt", 1)
+df_late = create_dataset("./rawdata/Tempest_cleaned.txt", 2)
 
 # 2. 合并并打乱数据
 df_all = pd.concat([df_early, df_middle, df_late], ignore_index=True)
