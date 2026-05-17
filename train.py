@@ -70,7 +70,7 @@ model = AutoModelForSequenceClassification.from_pretrained(model_name, num_label
 # 4. 设置训练参数 (使用 GPU 训练)
 training_args = TrainingArguments(
     output_dir="./shakespeare_results",
-    evaluation_strategy="epoch",  # 每个 epoch 评估一次
+    eval_strategy="epoch",  # 每个 epoch 评估一次
     learning_rate=2e-5,  # 学习率
     per_device_train_batch_size=16,
     per_device_eval_batch_size=16,
