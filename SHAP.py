@@ -30,11 +30,28 @@ label_map = {
 # 4. 准备你要分析的文本片段
 # 建议从你的 cleaned 数据里找一段，或者手动输入一段
 sample_text = """
-[CHARACTER] Good, speak to the [CHARACTER]: fall to't, yarely, 
-or we run ourselves aground: bestir, bestir. 
-[CHARACTER] Heigh, my hearts! cheerly, cheerly, my hearts! 
-[CHARACTER] Tend to the [CHARACTER] Blow, till thou burst thy wind, 
-if room enough!
+[CHARACTER] And too soon marr'd are those so early made.
+The earth hath swallow'd all my hopes but she,
+She is the hopeful lady of my earth:
+But woo her, gentle Paris, get her heart,
+My will to her consent is but a part;
+An she agree, within her scope of choice
+Lies my consent and fair according voice.
+This night I hold an old accustom'd feast,
+Whereto I have invited many a guest,
+Such as I love; and you, among the store,
+One more, most welcome, makes my number more.
+At my poor house look to behold this night
+Earth-treading stars that make dark heaven light
+Such comfort as do lusty young men feel
+When well-apparell'd April on the heel
+Of limping winter treads, even such delight
+Among fresh female buds shall you this night
+Inherit at my house; hear all, all see,
+And like her most whose merit most shall be:
+Which on more view, of many mine being one
+May stand in number, though in reckoning none,
+Come, go with me.
 """
 
 # 5. 初始化 SHAP 解释器
