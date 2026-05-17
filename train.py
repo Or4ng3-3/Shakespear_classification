@@ -42,13 +42,24 @@ from transformers import (
     Trainer,
     TrainingArguments,
 )
-from sklearn.model_selection import train_test_split
-import torch
+
+import numpy as np
+from sklearn.metrics import accuracy_score
+from transformers import AutoModelForSequenceClassification, Trainer, TrainingArguments
 
 # 1. 划分训练集和测试集 (80%训练, 20%测试)
 train_df, test_df = train_test_split(df_all, test_size=0.2, random_state=42)
 train_dataset = Dataset.from_pandas(train_df)
 test_dataset = Dataset.from_pandas(test_df)
+
+
+def compute_metrics(eval_pred):
+    logits, labels = eval_pred
+    # 取概率最大的那个类别作为预测结果
+    predictions = np.argmax(logits, axis=-1)
+    # 计算准确率
+    return {"accuracy": accuracy_score(labels, predictions)}
+
 
 # 2. 加载 MacBERTh 的 Tokenizer
 model_name = "emanjavacas/MacBERTh"
@@ -70,11 +81,11 @@ model = AutoModelForSequenceClassification.from_pretrained(model_name, num_label
 # 4. 设置训练参数 (使用 GPU 训练)
 training_args = TrainingArguments(
     output_dir="./shakespeare_results",
-    eval_strategy="epoch",  # 每个 epoch 评估一次
-    learning_rate=2e-5,  # 学习率
+    eval_strategy="epoch",
+    learning_rate=2e-5,
     per_device_train_batch_size=16,
     per_device_eval_batch_size=16,
-    num_train_epochs=3,  # 跑 3 轮
+    num_train_epochs=8,  #  增加到了 8 轮
     weight_decay=0.01,
 )
 
@@ -83,6 +94,7 @@ trainer = Trainer(
     args=training_args,
     train_dataset=tokenized_train,
     eval_dataset=tokenized_test,
+    compute_metrics=compute_metrics,
 )
 
 # 5. 开始微调！
