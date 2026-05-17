@@ -45,6 +45,7 @@ from transformers import (
 
 import numpy as np
 from sklearn.metrics import accuracy_score
+from sklearn.model_selection import train_test_split
 from transformers import AutoModelForSequenceClassification, Trainer, TrainingArguments
 
 # 1. 划分训练集和测试集 (80%训练, 20%测试)
